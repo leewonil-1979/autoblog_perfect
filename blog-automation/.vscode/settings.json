@@ -5,10 +5,17 @@
     "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages"
   ],
   "python.languageServer": "Pylance",
-  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.diagnosticMode": "openFilesOnly",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.indexing": true,
   "python.analysis.ignore": [],
+  "python.analysis.useLibraryCodeForTypes": false,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportGeneralTypeIssues": "none",
+    "reportOptionalMemberAccess": "none",
+    "reportOptionalSubscript": "none",
+    "reportPrivateImportUsage": "none"
+  },
   "editor.formatOnSave": true,
   "files.trimTrailingWhitespace": true,
   "python.terminal.activateEnvironment": true,
