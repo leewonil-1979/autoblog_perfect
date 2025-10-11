@@ -2,12 +2,10 @@
   "venvPath": "C:\\Users\\won20\\anaconda3\\envs",
   "venv": "blog_auto_LangGraph",
   "extraPaths": [
-    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages",
-    "C:\\Users\\won20\\AppData\\Roaming\\Python\\Python312\\site-packages"
+    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages"
   ],
   "pythonVersion": "3.12",
   "pythonPlatform": "Windows",
-  "typeCheckingMode": "basic",
-  "reportMissingImports": false,
-  "reportMissingModuleSource": false
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
 }

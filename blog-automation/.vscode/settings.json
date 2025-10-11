@@ -1,14 +1,14 @@
 {
   "python.defaultInterpreterPath": "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\python.exe",
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "off",
   "python.analysis.extraPaths": [
-    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages",
-    "C:\\Users\\won20\\AppData\\Roaming\\Python\\Python312\\site-packages"
+    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages"
   ],
   "python.languageServer": "Pylance",
   "python.analysis.diagnosticMode": "workspace",
   "python.analysis.autoImportCompletions": true,
   "python.analysis.indexing": true,
+  "python.analysis.ignore": [],
   "editor.formatOnSave": true,
   "files.trimTrailingWhitespace": true,
   "python.terminal.activateEnvironment": true,
