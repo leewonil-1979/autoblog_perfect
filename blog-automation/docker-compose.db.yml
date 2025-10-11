@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: blog_auto_db
+    environment:
+      POSTGRES_USER: blog_user
+      POSTGRES_PASSWORD: strong_password_here
+      POSTGRES_DB: blog_automation
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/00_init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U blog_user -d blog_automation"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  pg_data:

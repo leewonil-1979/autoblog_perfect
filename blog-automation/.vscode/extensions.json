@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "ms-python.vscode-pylance",
+    "bierner.markdown-preview-github-styles",
+    "redhat.vscode-yaml"
+  ]
+}

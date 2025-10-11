@@ -1,0 +1,18 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\python.exe",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.extraPaths": [
+    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages"
+  ],
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "python.terminal.activateEnvironment": true,
+  "sql.linter.executablePath": "",
+  "sql.format.enable": false,
+  "[sql]": {
+    "editor.defaultFormatter": null
+  },
+  "files.associations": {
+    "*.sql": "sql"
+  }
+}
