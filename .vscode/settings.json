@@ -1,0 +1,39 @@
+{
+  // ===== Python 환경 =====
+  "python.defaultInterpreterPath": "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\python.exe",
+  "python.terminal.activateEnvironment": true,
+  "python.languageServer": "Pylance",
+  // 저장 시 포맷(Black 사용 시 별도 확장/설정 가능)
+  "editor.formatOnSave": true,
+
+  // ===== 에디터 공통 =====
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.sql": "postgres",          // 모든 .sql을 PostgreSQL로 인식
+    "init.sql": "postgres",
+    "sample_data.sql": "postgres"
+  },
+
+  // ===== SQL 관련(오탐 최소화) =====
+  // 기본 SQL 린터/포매터 기능은 사용 안 함(우리는 psql로 실행)
+  "sql.format.enable": false,
+  "sql.linter.executablePath": "",
+  "[sql]": {
+    "editor.defaultFormatter": null,
+    "editor.suggest.showWords": false
+  },
+  // SQLTools 확장을 쓸 경우 텔레메트리/자동 동작 최소화
+  "sqltools.useNodeRuntime": false,
+  "sqltools.telemetry": false,
+
+  // MSSQL류 확장이 깔려 있을 때 오류표시 억제(설치되어 있지 않으면 무시됨)
+  "mssql.intelliSense.enableErrorChecking": false,
+  "mssql.intelliSense.enableSuggestions": true,
+
+  // ===== 편의(선택) : 터미널 기본 셸을 PowerShell로 =====
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  // ===== 추천 확장(정보) : 설치되어 있지 않으면 무시됨 =====
+  // Microsoft PostgreSQL 확장 식별자
+  "extensions.ignoreRecommendations": false
+}

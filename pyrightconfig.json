@@ -1,0 +1,32 @@
+{
+  "venvPath": "C:\\Users\\won20\\anaconda3\\envs",
+  "venv": "blog_auto_LangGraph",
+  "extraPaths": [
+    "C:\\Users\\won20\\anaconda3\\envs\\blog_auto_LangGraph\\Lib\\site-packages"
+  ],
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Windows",
+
+  "typeCheckingMode": "off",
+  "useLibraryCodeForTypes": false,
+
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportGeneralTypeIssues": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportOptionalSubscript": "none",
+  "reportPrivateImportUsage": "none",
+  "reportUnusedImport": "none",
+  "reportUnusedVariable": "none",
+
+  "exclude": [
+    "**/__pycache__",
+    "**/*.pyc",
+    "**/node_modules",
+    "**/.venv",
+    "**/.pytest_cache",
+    "**/package",
+    "**/*.sql",
+    "*.sql"
+  ]
+}

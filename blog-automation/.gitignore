@@ -1,7 +1,0 @@
-.env
-.vscode/*.log
-**/__pycache__/
-**/.pytest_cache/
-lambda/package/
-lambda/lambda.zip
-pg_data/

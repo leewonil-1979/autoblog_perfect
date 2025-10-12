@@ -1,21 +1,183 @@
 # lambda/render.py
-# 목적: 본문 규격 템플릿 + 메타 생성
-from __future__ import annotations
-
+"""
+HTML 템플릿 렌더링 모듈
+- SEO 최적화된 HTML 생성
+- 메타 정보 자동 생성
+- 반응형 디자인 스타일 포함
+"""
 import re
 from typing import List, Dict, Any
 
 
+# ===== 유틸리티 함수 =====
 def slugify(title: str) -> str:
     """제목을 URL-safe slug로 변환"""
     s = title.lower()
-    # 한글 및 알파벳, 숫자, 하이픈, 공백만 유지
+    # 한글, 영문, 숫자, 하이픈만 유지
     s = re.sub(r"[^a-z0-9\s\-가-힣]+", "", s)
     # 공백을 하이픈으로 변환
     s = re.sub(r"\s+", "-", s).strip("-")
     return s or "post"
 
 
+def get_base_style() -> str:
+    """반응형 CSS 스타일 반환"""
+    return """<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+    line-height: 1.75;
+    color: #1f2937;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+
+  h1 {
+    font-size: 2.25em;
+    margin: 0.5em 0;
+    color: #111827;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 1.75em;
+    margin: 1.2em 0 0.6em;
+    color: #1f2937;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.3em;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.25em;
+    margin: 1em 0 0.5em;
+    color: #374151;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 1em 0;
+    line-height: 1.8;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    border: 1px solid #d1d5db;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    border: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  tbody tr:hover {
+    background-color: #f9fafb;
+  }
+
+  ul, ol {
+    margin: 1em 0;
+    padding-left: 2em;
+  }
+
+  li {
+    margin: 0.6em 0;
+    line-height: 1.7;
+  }
+
+  .cta {
+    border: 2px dashed #9ca3af;
+    padding: 20px;
+    margin: 24px 0;
+    background-color: #f9fafb;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cta strong {
+    color: #dc2626;
+    font-size: 1.1em;
+  }
+
+  .image-placeholder {
+    background-color: #f3f4f6;
+    border: 2px dashed #d1d5db;
+    padding: 40px 20px;
+    margin: 20px 0;
+    text-align: center;
+    color: #6b7280;
+    border-radius: 4px;
+  }
+
+  .caption {
+    font-size: 0.9em;
+    color: #6b7280;
+    margin-top: 0.5em;
+    font-style: italic;
+  }
+
+  details {
+    margin: 1em 0;
+    padding: 16px;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+  }
+
+  summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #1f2937;
+    padding: 4px 0;
+  }
+
+  summary:hover {
+    color: #3b82f6;
+  }
+
+  details[open] {
+    background-color: #eff6ff;
+  }
+
+  details p {
+    margin-top: 12px;
+    padding-left: 8px;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 12px;
+    }
+
+    h1 {
+      font-size: 1.75em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+    }
+
+    table {
+      font-size: 0.9em;
+    }
+
+    th, td {
+      padding: 8px 10px;
+    }
+  }
+</style>"""
+
+# ===== 메인 렌더링 함수 =====
 def render_html(
     topic: str,
     intent: str,
@@ -24,96 +186,24 @@ def render_html(
 ) -> Dict[str, Any]:
     """
     SEO 최적화된 HTML 템플릿 생성
-    
+
     Args:
         topic: 글의 제목/주제
         intent: 검색 의도 (정보/상업/거래)
         outline: H2 헤더 리스트
         images: 삽입할 이미지 개수
-    
+
     Returns:
         html과 meta를 포함한 딕셔너리
     """
-    
-    # CSS 스타일 (인라인)
-    style = """<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-    line-height: 1.75;
-    color: #1f2937;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  h1 {
-    font-size: 2em;
-    margin: 0.5em 0;
-    color: #111827;
-  }
-  h2 {
-    font-size: 1.5em;
-    margin: 1em 0 0.5em;
-    color: #1f2937;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 0.3em;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-    border: 1px solid #d1d5db;
-  }
-  th, td {
-    border: 1px solid #e5e7eb;
-    padding: 12px;
-    text-align: left;
-  }
-  th {
-    background-color: #f3f4f6;
-    font-weight: 600;
-  }
-  ul, ol {
-    margin: 1em 0;
-    padding-left: 2em;
-  }
-  li {
-    margin: 0.5em 0;
-  }
-  .cta {
-    border: 2px dashed #9ca3af;
-    padding: 16px;
-    margin: 20px 0;
-    background-color: #f9fafb;
-    border-radius: 4px;
-  }
-  .cta strong {
-    color: #dc2626;
-  }
-  .caption {
-    font-size: 0.9em;
-    color: #6b7280;
-    margin-top: 0.5em;
-  }
-  details {
-    margin: 1em 0;
-    padding: 12px;
-    background-color: #f3f4f6;
-    border-radius: 4px;
-  }
-  summary {
-    font-weight: 600;
-    cursor: pointer;
-  }
-  summary:hover {
-    color: #dc2626;
-  }
-</style>"""
+    html_parts: List[str] = []
 
-    # HTML 본문 구성
-    html_parts: List[str] = [
+    # 제목 및 소개
+    html_parts.extend([
         f"<h1>{topic}</h1>",
-        f"<p><strong>검색 의도:</strong> {intent}. 본 문서는 자동화 파이프라인으로 생성되었습니다.</p>"
-    ]
+        f"<p><strong>검색 의도:</strong> {intent}. "
+        f"본 문서는 자동화된 AI 파이프라인으로 생성되었으며, 정보 제공 목적입니다.</p>"
+    ])
 
     # 아웃라인 섹션 (H2 최대 6개)
     for h2_title in outline[:6]:
@@ -199,8 +289,8 @@ def render_html(
 
     # 메타정보
     meta: Dict[str, Any] = {
-        "title": f"{topic} 완전 가이드: 핵심 요약과 실전 팁",
-        "description": "검색의도부터 본문/이미지/메타/CTA까지 한 번에 구성한 실전 SEO 가이드.",
+        "title": f"{topic} - 완전 가이드",
+        "description": f"{topic}에 대한 상세 가이드. SEO 최적화된 콘텐츠로 핵심 정보를 빠르게 확인하세요.",
         "keywords": ["SEO", "블로그자동화", "워드프레스", "티스토리", "콘텐츠마케팅"],
         "slug": slugify(topic),
         "author": "Blog Auto Generator",
@@ -208,21 +298,23 @@ def render_html(
     }
 
     return {
-        "html": style + "\n" + "\n".join(html_parts),
+        "html": get_base_style() + "\n" + "\n".join(html_parts),
         "meta": meta
     }
 
 
+# ===== 로컬 테스트 =====
 if __name__ == "__main__":
-    # 테스트
     result = render_html(
         topic="AI 블로그 자동화 완벽 가이드",
         intent="정보",
         outline=["개요", "원리", "실전 사례", "주의사항"],
         images=4
     )
-    print("=== HTML ===")
-    print(result["html"][:500] + "...")
-    print("\n=== META ===")
-    for k, v in result["meta"].items():
-        print(f"  {k}: {v}")
+
+    print("=== HTML 미리보기 ===")
+    print(result["html"][:800] + "...\n")
+
+    print("=== 메타 정보 ===")
+    for key, value in result["meta"].items():
+        print(f"  {key}: {value}")
