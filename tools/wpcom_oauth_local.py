@@ -11,7 +11,7 @@ import os
 import json
 import argparse
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode
 
 import requests
@@ -40,7 +40,7 @@ def _save_tokens_to_db(blog_id: int, site: str, access_token: str, refresh_token
         return
     conn = psycopg2.connect(db_url)
     cur = conn.cursor()
-    expires_at = datetime.utcnow() + timedelta(seconds=expires_in)
+    expires_at = datetime.now(timezone.utc) + timedelta(seconds=expires_in)
     cur.execute(
         """
         UPDATE blogs
