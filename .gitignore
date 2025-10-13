@@ -3,6 +3,13 @@
 .env.local
 .env.*.local
 
+# 보안 - AWS 키 및 토큰
+*accessKeys.csv
+*_accessKeys.csv
+secrets/
+*.pem
+*.key
+
 # VS Code
 .vscode/*.log
 .vscode/launch.json
