@@ -1,0 +1,36 @@
+[
+  {
+    "id": "BM-POC",
+    "title": "벤치마킹 크롤러 PoC (키워드→상위 30개→패턴 JSON)",
+    "deliverables": [
+      "data/benchmark/raw/*.json",
+      "data/benchmark/pattern_cards/*.json"
+    ],
+    "acceptance": [
+      "30개 이상 수집",
+      "title_length/hook_type/structure/keywords 추출"
+    ]
+  },
+  {
+    "id": "CAL-01",
+    "title": "에디토리얼 캘린더 4주 자동 생성",
+    "deliverables": [
+      "data/calendar/month_01.json"
+    ],
+    "acceptance": [
+      "28~30개 소주제, 날짜 배정",
+      "우선순위·난이도 필드 포함"
+    ]
+  },
+  {
+    "id": "RUN-DAILY",
+    "title": "run_daily.ps1 안정화(5건 드래프트 생성)",
+    "deliverables": [
+      "artifacts/paste.html",
+      "logs/run_daily/*.log"
+    ],
+    "acceptance": [
+      "드래프트 5건 무오류 생성"
+    ]
+  }
+]

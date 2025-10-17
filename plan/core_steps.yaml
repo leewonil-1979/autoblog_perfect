@@ -1,0 +1,61 @@
+version: 1
+week_1:
+  - id: BM-POC
+    title: "벤치마킹 크롤러 PoC (키워드→상위 30개→패턴 JSON)"
+    deliverables:
+      - "data/benchmark/raw/*.json"
+      - "data/benchmark/pattern_cards/*.json"
+    acceptance:
+      - "30개 이상 수집"
+      - "title_length/hook_type/structure/keywords 추출"
+  - id: CAL-01
+    title: "에디토리얼 캘린더 4주 자동 생성"
+    deliverables:
+      - "data/calendar/month_01.json"
+    acceptance:
+      - "28~30개 소주제, 날짜 배정"
+      - "우선순위·난이도 필드 포함"
+  - id: RUN-DAILY
+    title: "run_daily.ps1 안정화(5건 드래프트 생성)"
+    deliverables:
+      - "artifacts/paste.html"
+      - "logs/run_daily/*.log"
+    acceptance:
+      - "드래프트 5건 무오류 생성"
+week_2:
+  - id: AUT-TI-NA
+    title: "Tistory/Naver 셀레니움 발행 자동화"
+    deliverables:
+      - "tools/publish_tistory.py"
+      - "tools/publish_naver.py"
+    acceptance:
+      - "HTML 붙여넣기→발행까지 자동, 실패시 재시도·알림"
+  - id: IMG-PIPE
+    title: "이미지 ALT/WebP/리사이즈 파이프라인"
+    deliverables:
+      - "tools/image_pipeline.py"
+    acceptance:
+      - "ALT 자동생성, WebP 변환, 사이즈 규격화"
+week_3:
+  - id: CTA-TPL
+    title: "CTA/제휴/UTM 자동 삽입 템플릿"
+    deliverables:
+      - "templates/post_template.html"
+      - "tools/inject_monetization.py"
+    acceptance:
+      - "상/중/하 CTA, rel='nofollow sponsored', UTM 자동"
+week_4:
+  - id: MU-SNS
+    title: "멀티유스(SNS/쇼츠 대본) 자동 생성"
+    deliverables:
+      - "tools/generate_snippets.py"
+    acceptance:
+      - "1글→X 스레드10/릴스 스크립트1/LinkedIn 1"
+week_5:
+  - id: KPI-AB
+    title: "KPI 대시보드+제목/썸네일 A/B 루틴"
+    deliverables:
+      - "dashboards/spec.md"
+      - "tools/collect_metrics.py"
+    acceptance:
+      - "주간 리포트 자동 생성, AB 실험 전환 선택"
